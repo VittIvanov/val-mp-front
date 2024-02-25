@@ -1,14 +1,26 @@
-import HomePage from "pages/HomePage"
+// import HomePage from "pages/HomePage"
 import { Suspense } from "react"
-import PrivateRoutes from "./routes/PrivateRouters"
+// import PrivateRoutes from "./routes/PrivateRouters"
 import PublicRoutes from "./routes/PublicRoutes"
+import Header from "./features/Header/Header"
+import { AppStyles, Footer } from "./App.styled"
 
 export const App = () => {
   return (
-    <Suspense fallback={'loading...'}>
-      <PublicRoutes />
-      {/* <PrivateRoutes /> */}
-    </Suspense>
+    <>
+      <AppStyles />
+
+      <Header />
+
+      <Suspense fallback={'loading...'}>
+        <PublicRoutes />
+        {/* <PrivateRoutes /> */}
+      </Suspense>
+
+      <Footer>
+        <div> Valantis testMP</div>
+      </Footer>
+    </>
   )
 }
 

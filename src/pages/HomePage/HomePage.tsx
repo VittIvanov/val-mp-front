@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import { TestDiv, TestDiv2 } from './styled'
+import { TestDiv } from './styled'
 
 const HomePage: React.FC = () => {
   return (
@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
       </Helmet>
 
       <TestDiv />
-      <TestDiv2 />
     </>)
 }
 

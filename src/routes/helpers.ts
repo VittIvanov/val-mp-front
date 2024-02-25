@@ -17,7 +17,7 @@ export const checkPathMatch = (
   paths: { [k: string]: string },
 ) => {
 
-  let isMatch = false
+  let isMatch: boolean = false
 
   const allPaths = Object.keys(paths).map((k) => paths[k])
   const pathFirstSection = pathname.split('/')[1]
@@ -25,4 +25,5 @@ export const checkPathMatch = (
   allPaths.forEach((p) => {
     if (p.slice(1) === pathFirstSection) isMatch = true
   })
+  return isMatch
 }
