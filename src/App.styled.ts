@@ -85,7 +85,7 @@ justify-content: space-between;
 background-color: ${colors.primary};
 color:#fff;
 height: ${FOOTER_HEIGHT};
- &:last-child{
+ :last-child{
   cursor: pointer;
  }
 `
