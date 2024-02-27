@@ -1,5 +1,9 @@
 import { Helmet } from 'react-helmet'
 import { PageWrapper } from '../../App.styled'
+import { ProductGroup, ProductGroupContainer } from './styled'
+import { dummyProducts } from '../dummyProducts/dummyProducts'
+import ProductCard from '../../blocks/ProductCard/ProductCard'
+
 
 const HomePage: React.FC = () => {
   return (
@@ -9,7 +13,19 @@ const HomePage: React.FC = () => {
       </Helmet>
 
       <PageWrapper>
-        <h1>Главная</h1>
+        <ProductGroup>
+          <h1>Рекомендуемые товары</h1>
+
+          <ProductGroupContainer>
+            {dummyProducts.map((p) => (
+              <ProductCard
+                {...p}
+                key={p.id}
+              //isLiked=(idsInFavorites.includes(p.id))
+              />
+            ))}
+          </ProductGroupContainer>
+        </ProductGroup>
       </PageWrapper>
 
     </>)
