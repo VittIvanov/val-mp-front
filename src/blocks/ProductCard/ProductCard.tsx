@@ -1,8 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, Location } from "react-router-dom"
+import { useCallback, useMemo } from "react"
+
 
 import Button from "../../components/Button/Button"
+import { paths } from "../../routes/helpers"
 
-import { ReactComponent as HeartEmpty } from '../img/heart-empty.svg'
+import { ReactComponent as HeartEmpty } from 'img/heart-empty.svg'
+import { ReactComponent as HeartFilled } from 'img/heart-filled.svg'
 import {
   Wrapper,
   LikeWrapper,
@@ -15,6 +19,7 @@ import {
   Desc,
 } from "./styled"
 
+
 interface I_ProductCardProps {
   id: number
   slug?: string | undefined
@@ -23,7 +28,7 @@ interface I_ProductCardProps {
   priceDiscounted?: number
   title: string
   brand?: string
-  //liked: boolean
+  // liked: boolean
   hideLikes?: boolean
 }
 

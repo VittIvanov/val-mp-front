@@ -22,7 +22,7 @@ svg{
   pointer-events: none;
   width: 30px;
   height: 30px;
-  fill: #f7b0b0;
+  opacity: 0.5;
 }
 `
 

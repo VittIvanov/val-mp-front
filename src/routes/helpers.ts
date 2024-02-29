@@ -2,7 +2,9 @@
 
 export const pathPublic: { [k: string]: string } = {
   home: '/',
+  login: './login',
   productDetails: '/product/:idOrSlug',
+  cart: './cart',
 }
 
 export const pathPrivate: { [k: string]: string } = { accountSettings: '/account-settings', }
