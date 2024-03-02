@@ -10,8 +10,8 @@ const initialState: I_UserData = {
   phone: null,
   nameFirst: null,
   nameLast: null,
-  namePatronymic: null,
-  diaplayName: null,
+  // namePatronymic?: null,
+  displayName: null,
   birthdate: null,
   gender: null,
 }
@@ -29,4 +29,12 @@ export const setUserData = (userData: I_UserData): T_AppThunk => (dispatch) => {
   dispatch(setUserdataAction(userData))
 }
 
+// export const setUserData = (userData: I_UserData):
+//   AnyAction => (
+//   setUserdataAction(userData)
+// )
+
+// export const setUserData = (userData: I_UserData): PayloadAction<I_UserData> => (
+//   setUserdataAction(userData)
+// );
 export default userDataReducer

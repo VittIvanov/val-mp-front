@@ -7,7 +7,7 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import { selectIsLogged } from '../App/selectors'
 import UserDropdownMenu from './UserDropdownMenu'
-import logoPng from 'img/....'
+import logoPng from 'img/logo.png'
 
 import {
   Wrapper,
@@ -22,11 +22,13 @@ import {
   BtnNotifications,
   BtnCart,
 } from './styled'
+import { selectFavorites } from '../Favorites/selectors'
 
 const Header: React.FC = () => {
   //const location = useLocation()
 
   const isLogged = useSelector(selectIsLogged)
+  const favorites = useSelector(selectFavorites)
 
   const [searchInput, setSearchInput] = useState<string>('')
 
@@ -69,10 +71,10 @@ const Header: React.FC = () => {
 
       <RightSide>
         {isLogged ? <>
-          <BtnOrders count={5} />
-          <BtnFavorites count={5} />
-          <BtnNotifications count={5} />
-          <BtnCart count={5} />
+          <BtnOrders />
+          <BtnFavorites count={favorites.length} />
+          <BtnNotifications />
+          <BtnCart />
           <UserDropdownMenu />
         </> : (
           <Link to={paths.login}>

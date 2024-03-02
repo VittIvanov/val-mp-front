@@ -4,7 +4,7 @@ export const dummyProducts: I_ProductsDetails[] = [
   {
     id: 1,
     title: 'Нетбук Digma EYE 15C419',
-    imgSrc: 'https://avatars.mds.yandex.net/get-mpic/4355034/img_id6679915547201178118.jpeg/600x800',
+    imgSrc: 'https://source.unsplash.com/200x300/?jewelry',
     slug: 'netbook-digme-eve-12',
     price: 12345,
     priceRegular: 123456,

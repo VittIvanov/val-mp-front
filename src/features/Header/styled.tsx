@@ -109,7 +109,7 @@ export const BtnOrders = styled((props: any) => (
 
   &:after{
     content: ${({ count }) => count ? '"' + count + '"' : ''};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -139,7 +139,7 @@ position: relative;
 
 &:after{
     content: ${({ count }) => count ? '"' + count + '"' : ''};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -165,7 +165,7 @@ margin: 0 0 0 20px;
 
   &:after{
     content: ${({ count }) => count ? '"' + count + '"' : ''};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;
@@ -195,7 +195,7 @@ margin: 0 20px 0 24px;
 
   &:after {
     content: ${({ count }) => count ? '"' + count + '"' : ''};
-    background-color: ${colors.red};
+    background-color: ${colors.danger};
     color: #fff;
     border-radius: 50%;
     position: absolute;

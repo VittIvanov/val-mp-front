@@ -2,9 +2,10 @@ import { lazy } from "react"
 import { Route, Navigate, Routes, useLocation } from 'react-router-dom'
 
 import { checkPathMatch, paths } from './helpers'
-import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage"
 
 const HomePage = lazy(() => import('pages/HomePage'))
+const ProductDetailsPage = lazy(() => import('pages/ProductDetailsPage'))
+const FavoritesPage = lazy(() => import('pages/FavoritesPage'))
 
 const PublicRoutes: React.FC = () => {
   const location = useLocation()
@@ -15,6 +16,8 @@ const PublicRoutes: React.FC = () => {
     <Routes>
       <Route path={paths.home} element={<HomePage />} />
       <Route path={paths.productDetails} element={<ProductDetailsPage />} />
+      <Route path={paths.favorites} element={<FavoritesPage />} />
+
       <Route path='*' element={!isMatch ? <Navigate to={paths.home} /> : null} />
     </Routes>
   )

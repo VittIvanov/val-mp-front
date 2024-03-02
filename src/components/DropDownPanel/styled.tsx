@@ -3,6 +3,7 @@ import { Z_INDEX_LEVEL_1 } from "consts"
 
 export const Wrapper = styled.div`
 position: relative;
+border: 2px solid gold;
 `
 
 interface I_DropdownWrapperProps {

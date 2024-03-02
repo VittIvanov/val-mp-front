@@ -5,6 +5,7 @@ export const pathPublic: { [k: string]: string } = {
   login: './login',
   productDetails: '/product/:idOrSlug',
   cart: './cart',
+  favorites: '/favorites',
 }
 
 export const pathPrivate: { [k: string]: string } = { accountSettings: '/account-settings', }

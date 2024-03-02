@@ -1,14 +1,13 @@
 export interface I_UserData {
-  // id: string
-  // login: string
-  // email: string
-  // phone: number
-  // nameFirst: string
-  // nameLast: string
-  // namePatronymic: string
-  // diaplayName: string
-  // birthdate: Date
-  // gender: string
+  id: string | null
+  login: string | null
+  email: string | null
+  phone: number | null
+  nameFirst: string | null
+  nameLast: string | null
+  namePatronymic?: string
+  displayName: string | null
+  birthdate: Date | null
+  gender: string | null
 }
-
 

@@ -14,7 +14,7 @@ width: 30px;
 height: 30px;
 position: absolute;
 top: 0;
-right: 30px;
+right: 10px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -68,11 +68,30 @@ color: ${colors.primary};
 export const Title = styled.h3`
 width: 100%;
 margin-bottom: 5px;
-/* padding: 5px; */
+height: 50px;
+overflow: hidden;
 `
 export const Desc = styled.div`
 margin-bottom:10px;
 width: 100%;
-/* margin: 10px; */
+margin: 10px;
+height: 100px;
+overflow: hidden;
+`
+export const BtnsWrapper = styled.div`
+display: flex;
+flex-direction: column;
+width: 100%;
+margin-bottom: 0;
+* + * {
+    margin-top: 10px;
+  }
 
+  button{
+    display: flex;
+    width: 100%;
+    justify-content: center; /* Выравнивание текста по центру по горизонтали */
+    align-items: center; /* Выравнивание текста по центру по вертикали */
+    margin-bottom: 0;
+  }
 `

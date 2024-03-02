@@ -1,12 +1,11 @@
-import { useCallback, useRef, useState } from "react"
-import useOnClickOutside from "helpers/hooks"
-import { Wrapper, DropdownWrapper } from "./styled"
-
+import React, { useCallback, useRef, useState } from "react";
+import useOnClickOutside from "helpers/hooks";
+import { Wrapper, DropdownWrapper } from "./styled";
 
 interface I_DropDownPanel {
-  toggler: any
-  children: React.ReactElement
-  toLeft?: boolean
+  toggler: (props: any) => React.ReactElement;
+  children: React.ReactElement;
+  toLeft?: boolean;
 }
 
 const DropDownPanel: React.FC<I_DropDownPanel> = ({
@@ -14,32 +13,89 @@ const DropDownPanel: React.FC<I_DropDownPanel> = ({
   children,
   toLeft = false,
 }: I_DropDownPanel) => {
-  const dropDownPanelRef = useRef(null)
+  const menuRef = useRef(null);
+  const togglerRef = useRef(null);
 
-  const [isVisible, setIsVisible] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const toggleVisibility = useCallback(() => {
-    setIsVisible((isVisible) => !isVisible)
-  }, [])
+  const toggleMenuVisibility = useCallback(() => {
+    setIsVisible((isVisible) => !isVisible);
+  }, []);
 
-  useOnClickOutside(dropDownPanelRef, toggleVisibility)
+  useOnClickOutside(menuRef, () => setIsVisible(false));
 
-  const Toggler = toggler
+  const handleToggleClick = useCallback(() => {
+    setIsVisible((isVisible) => !isVisible);
+  }, []);
+
+  const handleMenuClick = useCallback((e: any) => {
+    e.stopPropagation();
+  }, []);
+
+  const Toggler = toggler;
 
   return (
     <Wrapper>
-      <Toggler onClick={toggleVisibility} />
+      <div ref={togglerRef} onClick={handleToggleClick}>
+        <Toggler />
+      </div>
 
       {isVisible && (
-        <DropdownWrapper
-          ref={dropDownPanelRef}
-          toLeft={toLeft}
-        >
+        <DropdownWrapper ref={menuRef} toLeft={toLeft} onClick={handleMenuClick}>
           {children}
         </DropdownWrapper>
       )}
     </Wrapper>
-  )
-}
+  );
+};
 
-export default DropDownPanel
+export default DropDownPanel;
+
+
+
+
+// import React, { useCallback, useRef, useState } from "react"
+// import useOnClickOutside from "helpers/hooks"
+// import { Wrapper, DropdownWrapper } from "./styled"
+
+
+// interface I_DropDownPanel {
+//   toggler: (props: any) => React.ReactElement
+//   children: React.ReactElement
+//   toLeft?: boolean
+// }
+
+// const DropDownPanel: React.FC<I_DropDownPanel> = ({
+//   toggler,
+//   children,
+//   toLeft = false,
+// }: I_DropDownPanel) => {
+//   const dropDownPanelRef = useRef(null)
+
+//   const [isVisible, setIsVisible] = useState<boolean>(false)
+
+//   const toggleMenuVisibility = useCallback(() => {
+//     setIsVisible((isVisible) => !isVisible)
+//   }, [])
+
+//   useOnClickOutside(dropDownPanelRef, toggleMenuVisibility)
+
+//   const Toggler = toggler
+
+//   return (
+//     <Wrapper>
+//       <Toggler onClick={toggleMenuVisibility} />
+
+//       {isVisible && (
+//         <DropdownWrapper
+//           ref={dropDownPanelRef}
+//           toLeft={toLeft}
+//         >
+//           {children}
+//         </DropdownWrapper>
+//       )}
+//     </Wrapper>
+//   )
+// }
+
+// export default DropDownPanel
