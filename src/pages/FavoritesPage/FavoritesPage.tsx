@@ -2,11 +2,13 @@ import { Helmet } from "react-helmet"
 import { useSelector } from "react-redux"
 import { PageWrapper } from "../../App.styled"
 import { ProductGroupContainer } from "./styled"
-import { dummyProducts } from "../dummyProducts/dummyProducts"
 import ProductCard from "../../blocks/ProductCard/ProductCard"
 import { selectFavorites } from "../../features/Favorites/selectors"
+import { useFetchProducts } from "../api/useFetchProducts"
+import { I_ProductsDetails } from "../types"
 
 const FavoritesPage: React.FC = () => {
+  const { products } = useFetchProducts()
   const idsInFavorites = useSelector(selectFavorites)
 
 
@@ -18,9 +20,9 @@ const FavoritesPage: React.FC = () => {
 
       {idsInFavorites.length ? (
         <ProductGroupContainer>
-          {dummyProducts
-            .filter((p) => idsInFavorites.includes(p.id))
-            .map((p) => (
+          {products
+            .filter((p: I_ProductsDetails) => idsInFavorites.includes(parseInt(p.id)))
+            .map((p: I_ProductsDetails) => (
               < ProductCard
                 {...p}
                 key={p.id}

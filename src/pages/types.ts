@@ -1,10 +1,11 @@
 export interface I_ProductsDetails {
-  id: number,
-  title: string,
-  imgSrc: string,
-  slug?: string,
-  priceRegular: number,
-  priceDiscounted?: number,
-  price: number,
-  brand: string,
+  id: string
+  slug?: string | undefined
+  imgSrc?: string
+  priceRegular: number | undefined
+  priceDiscounted?: number
+  title: string | undefined
+  brand?: string | null
+  isLiked: boolean
+  hideLikes?: boolean
 }

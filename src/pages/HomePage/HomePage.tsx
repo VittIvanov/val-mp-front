@@ -1,14 +1,19 @@
 import { Helmet } from 'react-helmet'
 import { PageWrapper } from '../../App.styled'
 import { ProductGroup, ProductGroupContainer } from './styled'
-import { dummyProducts } from '../dummyProducts/dummyProducts'
 import ProductCard from '../../blocks/ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 import { selectFavorites } from '../../features/Favorites/selectors'
 
+import { useFetchProducts } from '../api/useFetchProducts'
 
 const HomePage: React.FC = () => {
+  const { products } = useFetchProducts()
+
+
+
   const idsInFavorites = useSelector(selectFavorites)
+
 
   return (
     <>
@@ -21,11 +26,11 @@ const HomePage: React.FC = () => {
           <h1>Рекомендуемые товары</h1>
 
           <ProductGroupContainer>
-            {dummyProducts.map((p) => (
+            {products.map((p) => (
               <ProductCard
                 {...p}
                 key={p.id}
-                isLiked={idsInFavorites.includes(p.id)}
+                isLiked={idsInFavorites.includes(parseInt(p.id))}
               />
             ))}
           </ProductGroupContainer>

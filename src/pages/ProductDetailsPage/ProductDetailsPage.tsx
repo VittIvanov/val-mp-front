@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { paths } from "../../routes/helpers"
 import Button from "../../components/Button/Button"
 
+
 const ProductDetailsPage: React.FC = () => {
   return (
     <>

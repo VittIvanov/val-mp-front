@@ -1,6 +1,5 @@
-import { Link, Location, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useCallback, useMemo } from "react"
-
 import Button from "../../components/Button/Button"
 import { paths } from "../../routes/helpers"
 
@@ -23,13 +22,13 @@ import { addToFavorites, removeFromFavorites } from "../../features/Favorites/re
 
 
 interface I_ProductCardProps {
-  id: number
+  id: string
   slug?: string | undefined
-  imgSrc: string
-  priceRegular: number
+  imgSrc?: string
+  priceRegular: number | undefined
   priceDiscounted?: number
-  title: string
-  brand?: string
+  title: string | undefined
+  brand?: string | null
   isLiked: boolean
   hideLikes?: boolean
 }
