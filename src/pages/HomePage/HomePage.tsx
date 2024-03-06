@@ -5,15 +5,28 @@ import ProductCard from '../../blocks/ProductCard/ProductCard'
 import { useSelector } from 'react-redux'
 import { selectFavorites } from '../../features/Favorites/selectors'
 
-import { useFetchProducts } from '../api/useFetchProducts'
+import { apiGetUniqueItems } from '../api/apiGetUniqueItems'
+import { useEffect, useState } from 'react'
+import { I_ProductsDetails } from '../types'
 
 const HomePage: React.FC = () => {
-  const { products } = useFetchProducts()
-
-
-
+  const [products, setProducts] = useState<I_ProductsDetails[]>([])
   const idsInFavorites = useSelector(selectFavorites)
 
+  useEffect(() => {
+    // функция загрузки списка товаров с API
+    const fetchProducts = async () => {
+      try {
+        const productList = await apiGetUniqueItems()
+        setProducts(productList)
+      } catch (error) {
+        console.error('Ошибка при загрузке списка товаров:', error)
+      }
+    }
+
+    fetchProducts()
+  }, []
+  )
 
   return (
     <>
@@ -26,10 +39,14 @@ const HomePage: React.FC = () => {
           <h1>Рекомендуемые товары</h1>
 
           <ProductGroupContainer>
-            {products.map((p) => (
+            {products && products.map((p) => (
               <ProductCard
                 {...p}
                 key={p.id}
+                id={p.id}
+                title={p.product}
+                priceRegular={p.price}
+                brand={p.brand}
                 isLiked={idsInFavorites.includes(parseInt(p.id))}
               />
             ))}

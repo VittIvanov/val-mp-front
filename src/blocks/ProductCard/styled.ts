@@ -6,6 +6,8 @@ position: relative;
 display: block;
 max-width: 100%;
 padding: 0 10px;
+border: 2px solid gainsboro;
+border-radius: 5px;
 `
 
 export const LikeWrapper = styled.div`
@@ -29,7 +31,8 @@ svg{
 export const Image = styled.img`
 margin-bottom: 10px;
 width: 100%;
-height: 165px;
+height: 50px;
+background-position: center;
 border-radius: 4px;
 object-fit: scale-down;
 `
@@ -48,8 +51,6 @@ font-weight: 700;
 margin-right: 10px;
 color: ${colors.primary};
 width:100%;
-
-
 `
 
 export const PriceRegularWhenDiscounted = styled.div`
@@ -62,7 +63,6 @@ font-size: 18px;
 font-weight: 700;
 margin-right: 10px;
 color: ${colors.primary};
-
 `
 
 export const Title = styled.h3`
@@ -70,13 +70,20 @@ width: 100%;
 margin-bottom: 5px;
 height: 50px;
 overflow: hidden;
+
 `
 export const Desc = styled.div`
 margin-bottom:10px;
+font-weight: 700;
+font-style: italic;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color: goldenrod;
 width: 100%;
 margin: 10px;
-height: 100px;
+height: auto;
+min-height: 20px;
 overflow: hidden;
+
 `
 export const BtnsWrapper = styled.div`
 display: flex;

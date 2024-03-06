@@ -2,10 +2,10 @@ export interface I_ProductsDetails {
   id: string
   slug?: string | undefined
   imgSrc?: string
-  priceRegular: number | undefined
+  price: number | undefined
   priceDiscounted?: number
-  title: string | undefined
-  brand?: string | null
+  product: string | undefined
+  brand: string | null
   isLiked: boolean
   hideLikes?: boolean
 }

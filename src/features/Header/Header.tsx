@@ -9,6 +9,8 @@ import { selectIsLogged } from '../App/selectors'
 import UserDropdownMenu from './UserDropdownMenu'
 import logoPng from 'img/logo.png'
 
+import { consoleGetUniqueIds, consoleGetUniqueFields } from '../../pages/api/apiGetUniqueItems'
+
 import {
   Wrapper,
   LeftSide,
@@ -42,6 +44,13 @@ const Header: React.FC = () => {
   //   || location.pathname.includes(paths.confirmPasswordRecovery)
   // ) return null
 
+  const handleClick = async () => {
+    await consoleGetUniqueIds()
+    // Дальнейшие действия после завершения consoleGetid
+    await consoleGetUniqueFields()
+  }
+
+
   return (
     <Wrapper>
       <LeftSide>
@@ -49,7 +58,7 @@ const Header: React.FC = () => {
           <Logo src={logoPng} />
         </Link>
 
-        <Button>
+        <Button onClick={handleClick}>
           <Burger>
             <div /><div /><div />
           </Burger>

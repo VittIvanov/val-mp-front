@@ -9,7 +9,7 @@ export const ProductGroupContainer = styled.div`
   flex-wrap: wrap;
 
     *{
-      width: 16.666666%;
+      width: 10%;
       margin-bottom: 20px;
     }
 `

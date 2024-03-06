@@ -37,7 +37,6 @@ interface I_ProductCardProps {
 const ProductCard: React.FC<I_ProductCardProps> = ({
   id,
   slug,
-  imgSrc,
   priceRegular,
   priceDiscounted,
   title,
@@ -83,7 +82,7 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
       )}
 
       <Link to={`/product/${slug || id}`}>
-        <Image src={imgSrc} />
+        <Image src={"/src/img/photo-ring.jpg"} />
       </Link>
 
       <PriceWrapper>
