@@ -11,12 +11,14 @@ interface ProductPageState {
   products: I_ProductsDetails[]
   currentPage: number
   filters: FilterType
+  totalProducts?: number;
 }
 
 const initialState: ProductPageState = {
   products: [],
   currentPage: 1,
   filters: {},
+  totalProducts: 50,
 };
 
 const productPageSlice = createSlice({

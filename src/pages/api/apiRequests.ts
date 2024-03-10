@@ -14,7 +14,7 @@ export const apiGetUniqueItems = async () => {
   return filterDuplicates(items)
 }
 
-// Пример использования
+// Пример использования(тест)
 export const consoleGetUniqueFields = async () => {
   try {
     // Получить список имеющихся полей товаров

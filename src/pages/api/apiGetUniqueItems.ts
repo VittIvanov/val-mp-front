@@ -41,7 +41,7 @@ export const getIds = async (offset = 0, limit = 100) => {
 export const getItems = async (ids: string[]) => {
   try {
     const result = await sendRequest('get_items', { ids });
-    return result;
+    return result
   } catch (error) {
     console.error('Ошибка при получении информации о товарах:', error);
     throw error;
