@@ -38,7 +38,7 @@ export const getIds = async (offset = 0, limit = 100) => {
   }
 };
 
-const getItems = async (ids: string[]) => {
+export const getItems = async (ids: string[]) => {
   try {
     const result = await sendRequest('get_items', { ids });
     return result;
@@ -48,7 +48,7 @@ const getItems = async (ids: string[]) => {
   }
 };
 
-const filterDuplicates = (items: I_ProductsDetails[]) => {
+export const filterDuplicates = (items: I_ProductsDetails[]) => {
   const uniqueIds = new Set<string>();
   const filteredItems: I_ProductsDetails[] = [];
 
@@ -62,13 +62,8 @@ const filterDuplicates = (items: I_ProductsDetails[]) => {
   return filteredItems;
 };
 
-export const apiGetUniqueItems = async () => {
-  const ids = await getIds();
-  const items = await getItems(ids);
-  return filterDuplicates(items)
-}
-
-const getFields = async (field = "brand", offset = 0, limit = 100) => {
+// work with fields
+export const getFields = async (field = "brand", offset = 0, limit = 100) => {
   try {
     return await sendRequest('get_fields', { field, offset, limit });
   } catch (error) {
@@ -76,13 +71,9 @@ const getFields = async (field = "brand", offset = 0, limit = 100) => {
     throw error;
   }
 };
-// Теперь вы можете вызывать getFields с нужными параметрами, например:
-
-// const fields = await getFields("brand", 3, 5);
-// console.log(fields);
 
 // Метод для получения значений определенного поля товаров
-const getFieldValues = async (field: string) => {
+export const getFieldValues = async (field: string) => {
   try {
     return await sendRequest('get_fields', { field });
   } catch (error) {
@@ -92,7 +83,7 @@ const getFieldValues = async (field: string) => {
 };
 
 // Метод для фильтрации товаров по полю и значению
-const filterProductsByFieldValue = async (field: string, value: any) => {
+export const filterProductsByFieldValue = async (field: string, value: any) => {
   try {
     return await sendRequest('filter', { [field]: value });
   } catch (error) {
@@ -101,38 +92,3 @@ const filterProductsByFieldValue = async (field: string, value: any) => {
   }
 };
 
-// Пример использования
-export const consoleGetUniqueFields = async () => {
-  try {
-    // Получить список имеющихся полей товаров
-    const fields = await getFields();
-    console.log('Список полей товаров:', fields);
-
-    // Получить значения поля "brand"
-    const brandValues = await getFieldValues('product');
-    console.log('Значения поля "product":', brandValues);
-
-    // Фильтрация товаров по полю "price" и значению 17500.0
-    const filteredByPriceProducts = await filterProductsByFieldValue('price', 17500.0);
-    console.log('Отфильтрованные товары:', filteredByPriceProducts);
-  } catch (error) {
-    console.error('Произошла ошибка:', error);
-  }
-};
-
-
-
-
-// EXAMPLE
-export const consoleGetUniqueIds = async () => {
-  try {
-    const ids = await getIds();
-    console.log('Список идентификаторов товаров:', ids);
-
-    const items = await getItems(ids);
-    const uniqueItems = filterDuplicates(items);
-    console.log('Информация о товарах без дубликатов:', uniqueItems);
-  } catch (error) {
-    console.error('Произошла ошибка:', error);
-  }
-};

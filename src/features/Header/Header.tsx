@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -7,15 +7,15 @@ import Button from 'components/Button'
 import Input from 'components/Input'
 import { selectIsLogged } from '../App/selectors'
 import UserDropdownMenu from './UserDropdownMenu'
-import logoPng from 'img/logo.png'
-
-import { consoleGetUniqueIds, consoleGetUniqueFields } from '../../pages/api/apiGetUniqueItems'
+// import logoPng from 'img/logo.png'
+import FilterSelector from '../FilterSelector/FilterSelector'
+import { filterProductsByFieldValue, getItems } from '../../pages/api/apiGetUniqueItems'
 
 import {
   Wrapper,
   LeftSide,
-  Logo,
-  Burger,
+  // Logo,
+  // Burger,
   SearchWrapper,
   BtnSearch,
   RightSide,
@@ -25,18 +25,51 @@ import {
   BtnCart,
 } from './styled'
 import { selectFavorites } from '../Favorites/selectors'
+import { useDispatch } from 'react-redux'
+import { setProducts } from '../../pages/api/productsSlice'
+
 
 const Header: React.FC = () => {
   //const location = useLocation()
-
+  const dispatch = useDispatch()
   const isLogged = useSelector(selectIsLogged)
   const favorites = useSelector(selectFavorites)
 
-  const [searchInput, setSearchInput] = useState<string>('')
+  // const [searchInput, setSearchInput] = useState<string>('')
+  const [selectedValue, setSelectedValue] = useState<string>('')
+  const [searchValue, setSearchValue] = useState<string>('')
 
-  const changeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value)
-  }, [])
+  // const changeSearchInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearchInput(e.target.value)
+  // }, []);
+
+  const handleChangeField = (field: string) => {
+    setSelectedValue(field)
+  }
+
+  const handleChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+  }
+
+  const handleSearch = async () => {
+    try {
+      let valueToFilter: string | number = searchValue
+      if (selectedValue === 'price') {
+        valueToFilter = parseInt(searchValue)
+      }
+      const filteredByFieldProducts = await filterProductsByFieldValue(selectedValue, valueToFilter)
+      const detailedProducts = await getItems(filteredByFieldProducts)
+      dispatch(setProducts(detailedProducts))
+    } catch (error) {
+      console.error('Произошла ошибка:', error)
+    }
+  };
+
+  //   await filterProductsByFieldValue('price', 17500.0);
+  //   console.log('Отфильтрованные товары(цена):', filteredByPriceProducts);
+  // } catch (error) {
+  //   console.error('Произошла ошибка:', error);
+  // }
 
   // if (location.pathname.includes(paths.login)
   //   || location.pathname.includes(paths.register)
@@ -44,38 +77,37 @@ const Header: React.FC = () => {
   //   || location.pathname.includes(paths.confirmPasswordRecovery)
   // ) return null
 
-  const handleClick = async () => {
-    await consoleGetUniqueIds()
-    // Дальнейшие действия после завершения consoleGetid
-    await consoleGetUniqueFields()
-  }
+
 
 
   return (
     <Wrapper>
       <LeftSide>
         <Link to={paths.home}>
-          <Logo src={logoPng} />
+          {/* <Logo src={logoPng} /> */}
+          <h1>«Хороший магазин»</h1>
         </Link>
 
-        <Button onClick={handleClick}>
-          <Burger>
+        <Button >
+          {/* <Burger>
             <div /><div /><div />
-          </Burger>
+          </Burger> */}
+          <span>Фильтр:</span>
 
-          <span>Каталог</span>
+          <FilterSelector selectedValue={selectedValue} handleChange={handleChangeField} />
         </Button>
       </LeftSide>
 
       <SearchWrapper>
         <Input
-          value={searchInput}
-          onChange={changeSearchInput}
+          value={searchValue}
+          onChange={handleChangeSearchValue}
           isGhost
           placeholder='поиск товаров'
+          filterValue={selectedValue} // Передаем значение selectedField
         />
 
-        <BtnSearch />
+        <BtnSearch onClick={handleSearch} />
       </SearchWrapper>
 
       <RightSide>

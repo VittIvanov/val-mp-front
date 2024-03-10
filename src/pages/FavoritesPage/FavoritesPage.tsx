@@ -4,11 +4,11 @@ import { PageWrapper } from "../../App.styled"
 import { ProductGroupContainer } from "./styled"
 import ProductCard from "../../blocks/ProductCard/ProductCard"
 import { selectFavorites } from "../../features/Favorites/selectors"
-import { useFetchProducts } from "../api/useFetchProducts"
+import { apiGetUniqueItems } from "../api/apiRequests"
 import { I_ProductsDetails } from "../types"
 
 const FavoritesPage: React.FC = () => {
-  const { products } = useFetchProducts()
+  // const { products } = apiGetUniqueItems()
   const idsInFavorites = useSelector(selectFavorites)
 
 
@@ -20,7 +20,7 @@ const FavoritesPage: React.FC = () => {
 
       {idsInFavorites.length ? (
         <ProductGroupContainer>
-          {products
+          {/* {products
             .filter((p: I_ProductsDetails) => idsInFavorites.includes(parseInt(p.id)))
             .map((p: I_ProductsDetails) => (
               < ProductCard
@@ -30,7 +30,7 @@ const FavoritesPage: React.FC = () => {
                 hideLikes={true}
               />
             ))
-          }
+          } */}
         </ProductGroupContainer>
       ) : (
         <p>Пока в избранном ничего нет</p>

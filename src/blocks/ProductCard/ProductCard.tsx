@@ -8,7 +8,7 @@ import { ReactComponent as HeartFilled } from 'img/heart-filled.svg'
 import {
   Wrapper,
   LikeWrapper,
-  Image,
+  // Image,
   PriceWrapper,
   PriceRegular,
   PriceRegularWhenDiscounted,
@@ -25,9 +25,9 @@ interface I_ProductCardProps {
   id: string
   slug?: string | undefined
   imgSrc?: string
-  priceRegular: number | undefined
+  price: number | undefined
   priceDiscounted?: number
-  title: string | undefined
+  product: string | undefined
   brand?: string | null
   isLiked: boolean
   hideLikes?: boolean
@@ -37,9 +37,9 @@ interface I_ProductCardProps {
 const ProductCard: React.FC<I_ProductCardProps> = ({
   id,
   slug,
-  priceRegular,
+  price,
   priceDiscounted,
-  title,
+  product,
   brand,
   isLiked,
   hideLikes = false,
@@ -81,22 +81,26 @@ const ProductCard: React.FC<I_ProductCardProps> = ({
         </LikeWrapper>
       )}
 
-      <Link to={`/product/${slug || id}`}>
-        <Image src={"/src/img/photo-ring.jpg"} />
-      </Link>
+      {/* <Link to={`/product/${slug || id}`}>
+        <Image />
+      </Link> */}
 
       <PriceWrapper>
         {Number.isInteger(priceDiscounted) ? <>
           <PriceDiscounted>{priceDiscounted} $</PriceDiscounted>
-          <PriceRegularWhenDiscounted>{priceRegular}</PriceRegularWhenDiscounted>
+          <PriceRegularWhenDiscounted>{price}</PriceRegularWhenDiscounted>
         </> : (
-          <PriceRegular>{priceRegular} ₽</PriceRegular>
+          <PriceRegular>
+            <span>Id товара:{id}</span><br />
+            {price} ₽
+          </PriceRegular>
+
         )}
       </PriceWrapper>
 
       <Title className="h4">
         <Link to={`/product/${slug || id}`}>
-          {title}
+          {product}
         </Link>
       </Title>
 

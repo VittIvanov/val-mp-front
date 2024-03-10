@@ -86,6 +86,7 @@ export const InputItself = styled.input<I_InputItselfProps>`
 interface I_TogglePasswordVisibilityProps {
   passwordVisibility: boolean
 }
+
 export const TogglePasswordVisibility = styled.div<I_TogglePasswordVisibilityProps>`
   position: absolute;
   bottom: 13px;

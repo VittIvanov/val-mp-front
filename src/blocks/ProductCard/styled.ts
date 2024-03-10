@@ -28,14 +28,13 @@ svg{
 }
 `
 
-export const Image = styled.img`
-margin-bottom: 10px;
-width: 100%;
-height: 50px;
-background-position: center;
-border-radius: 4px;
-object-fit: scale-down;
-`
+// export const Image = styled.img`
+// margin-bottom: 10px;
+// width: 100%;
+// height: 50px;
+// background-position: center;
+// border-radius: 4px;
+// `
 
 export const PriceWrapper = styled.div`
 display: flex;
@@ -51,6 +50,12 @@ font-weight: 700;
 margin-right: 10px;
 color: ${colors.primary};
 width:100%;
+
+span{
+  color: #000;
+  font-size: 12px;
+  font-weight: 400;
+}
 `
 
 export const PriceRegularWhenDiscounted = styled.div`
@@ -79,7 +84,7 @@ font-style: italic;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 color: goldenrod;
 width: 100%;
-margin: 10px;
+/* margin: 10px; */
 height: auto;
 min-height: 20px;
 overflow: hidden;

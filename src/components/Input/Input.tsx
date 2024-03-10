@@ -1,25 +1,25 @@
 import { useState } from 'react'
-
 import {
   Wrapper,
   InputItself,
   Label,
   TogglePasswordVisibility,
 } from './styled'
-
+import { filterProductsByFieldValue } from '../../pages/api/apiGetUniqueItems'
 
 interface I_InputProps {
-  value: string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
-  name?: string
-  label?: string
-  placeholder?: string
-  type?: 'text' | 'password' | 'date'
-  isGhost?: boolean
-  autocomplete?: string
-  icon?: React.ReactNode
-  disabled?: boolean
+  value: string | number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  name?: string;
+  label?: string;
+  placeholder?: string;
+  type?: 'text' | 'password' | 'date';
+  isGhost?: boolean;
+  autocomplete?: string;
+  icon?: React.ReactNode;
+  disabled?: boolean;
+  filterValue: string; // Добавили filterValue
 }
 
 
@@ -35,14 +35,26 @@ const Input: React.FC<I_InputProps> = ({
   autocomplete,
   icon,
   disabled,
+  filterValue,
 }) => {
   const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false)
   const handleTogglePasswordVisibilityClick = () => setPasswordVisibility(!passwordVisibility)
 
+  // Функция обработки изменения значения инпута:
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+    onChange(e)
+
+    setTimeout(() => {
+      filterProductsByFieldValue(filterValue, value)
+    }, 3000)
+  }
+
+
   const inputItself = (
     <InputItself
       name={name}
-      onChange={onChange}
+      onChange={handleInputChange}
       onFocus={onFocus}
       type={type === 'password' && passwordVisibility ? 'text' : type}
       placeholder={placeholder}
@@ -61,7 +73,6 @@ const Input: React.FC<I_InputProps> = ({
     />
   )
 
-
   return (
     <Wrapper>
       {label ? (
@@ -71,7 +82,6 @@ const Input: React.FC<I_InputProps> = ({
             {inputItself}
             {type === 'password' && togglePassword}
           </div>
-
           {icon && <i>{icon}</i>}
         </Label>
       ) : <>
