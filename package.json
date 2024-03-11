@@ -1,7 +1,6 @@
 {
   "name": "val-mp-front",
   "version": "0.1.0",
-  "homepage": "https://VittIvanov/github.io/val-mp-front/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
