@@ -14,11 +14,11 @@
     "static/media/heart-empty.svg": "static/media/heart-empty.65fb1a1c07f04c54a7255e0d7281bb5c.svg",
     "static/media/favorites.svg": "static/media/favorites.0dddafceeb832fe5902a38edaef8e3ac.svg",
     "index.html": "/index.html",
-    "main.18d75058.js.map": "static/js/main.18d75058.js.map",
-    "176.39a9e439.chunk.js.map": "static/js/176.39a9e439.chunk.js.map",
-    "384.01d43844.chunk.js.map": "static/js/384.01d43844.chunk.js.map",
-    "97.9bf9cb1a.chunk.js.map": "static/js/97.9bf9cb1a.chunk.js.map",
-    "591.0e491bb4.chunk.js.map": "static/js/591.0e491bb4.chunk.js.map"
+    "main.18d75058.js.map": "/static/js/main.18d75058.js.map",
+    "176.39a9e439.chunk.js.map": "/static/js/176.39a9e439.chunk.js.map",
+    "384.01d43844.chunk.js.map": "/static/js/384.01d43844.chunk.js.map",
+    "97.9bf9cb1a.chunk.js.map": "/static/js/97.9bf9cb1a.chunk.js.map",
+    "591.0e491bb4.chunk.js.map": "/static/js/591.0e491bb4.chunk.js.map"
   },
   "entrypoints": [
     "/static/js/main.18d75058.js"
